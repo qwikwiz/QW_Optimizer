@@ -1,6 +1,8 @@
 <?php
 /*
- * QW_Optimizer by Ariel Henryson
+ * QW_Optimizer  0.1
+ (c) 2014 Ariel Henryson , qwikwiz.com
+ License: MIT
  */
 
 class QW_Optimizer {
