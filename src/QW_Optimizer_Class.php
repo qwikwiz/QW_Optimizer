@@ -40,6 +40,23 @@ class QW_Optimizer {
         }
     }
 
+    public function inline_css() {
+        $elements = $this->dom->getElementsByTagName('link');
+        $i = $elements->length - 1;
+        while ($i > -1) {
+            $el = $elements->item($i);
+            if ($el->hasAttribute('href') &&  $el->getAttribute('rel') === 'stylesheet' &&
+                !$el->hasAttribute('data-skip')) {
+                $src = $el->getAttribute('href');
+                $style_content = file_get_contents($src);
+                $script = $this->dom->createElement("style", $style_content);
+                $el->parentNode->replaceChild($script, $el);
+            }
+
+            $i--;
+        }
+    }
+
     public function get_html() {
         return $this->dom->saveHTML();
     }
